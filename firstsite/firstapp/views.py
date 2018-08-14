@@ -14,7 +14,7 @@ def first_try(request):
             <body>
                 <h1 class="ui center aligned icon header">
                     <i class="hand spock icon"></i>
-                    Hello, {{ person.name}}
+                    Hello, {{ person.name }}
                 </h1>
             </body>
         </html>
@@ -26,8 +26,19 @@ def first_try(request):
     return HttpResponse(web_page)
 
 def index(request):
+    print(request)
+    print('==='*30)
+    print(dir(request))
+    print('==='*30)
+    print(type(request))
+    queryset = request.GET.get('tag')
+    if queryset:
+        article_list = Article.objects.filter(tag=queryset)
+    else:
+        article_list = Article.objects.all()
+    print(queryset)
     context = {};
-    article_list = Article.objects.all()
+
     context['article_list'] = article_list
     index_page = render(request, 'first_web_2.html', context)
     return index_page
