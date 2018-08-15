@@ -17,3 +17,9 @@ class Article(models.Model):
     tag = models.CharField(null=True, blank=True, max_length=5, choices=TAG_CHOICES)
     def __str__(self):
         return self.headline
+
+class Commnt(models.Model):
+    name = models.CharField(null=True, blank=True, max_length=50)
+    commnt = models.TextField()
+    def __str__(self):
+        return self.commnt

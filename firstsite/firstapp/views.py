@@ -1,6 +1,7 @@
-from django.shortcuts import render, HttpResponse
-from firstapp.models import People, Article
+from django.shortcuts import render, HttpResponse, redirect
+from firstapp.models import People, Article, Commnt
 from django.template import Context, Template
+from firstapp.form import CommentForm
 
 # Create your views here.
 def first_try(request):
@@ -42,3 +43,20 @@ def index(request):
     context['article_list'] = article_list
     index_page = render(request, 'first_web_2.html', context)
     return index_page
+
+def detail(request):
+    if request.method == 'GET':
+        form = CommentForm
+    if request.method == 'POST':
+        form= CommentForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            commnt = form.cleaned_data['comment']
+            c = Commnt(name=name, commnt=commnt)
+            c.save()
+            return redirect(to='detail')
+    context = {}
+    comment_list = Commnt.objects.all()
+    context['comment_list'] = comment_list
+    context['form'] = form
+    return render(request, 'detail.html', context)
