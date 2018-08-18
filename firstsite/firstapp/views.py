@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from firstapp.models import People, Article, Commnt
+from firstapp.models import People, Article, Comment
 from django.template import Context, Template
 from firstapp.form import CommentForm
 
@@ -44,19 +44,21 @@ def index(request):
     index_page = render(request, 'first_web_2.html', context)
     return index_page
 
-def detail(request):
+def detail(request, page_num):
     if request.method == 'GET':
         form = CommentForm
     if request.method == 'POST':
         form= CommentForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
-            commnt = form.cleaned_data['comment']
-            c = Commnt(name=name, commnt=commnt)
+            comment = form.cleaned_data['comment']
+            c = Comment(name=name, commnt=comment)
             c.save()
             return redirect(to='detail')
     context = {}
-    comment_list = Commnt.objects.all()
+    comment_list = Comment.objects.all()
+    article = Article.objects.get(id=page_num)
+    context['article'] = article
     context['comment_list'] = comment_list
     context['form'] = form
     return render(request, 'detail.html', context)

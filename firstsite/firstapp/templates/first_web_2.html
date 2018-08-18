@@ -84,7 +84,7 @@
 
             {% for article in article_list %}
                 <div class="ui container vertical segment">
-                    <a href="#">
+                    <a href="{% url 'detail' article.id %}">
                         <h1 class="ui header">
                             {{ article.headline }}
                         </h1>
@@ -93,7 +93,7 @@
                     <i class="icon grey small unhide">10,000</i>
                     <p>
                         {{ article.content|truncatewords:100 }}
-                        <a href="#">
+                        <a href="{% url 'detail' article.id %}">
                             <i class="angle tiny double grey right icon">READMORE</i>
                         </a>
                     </p>

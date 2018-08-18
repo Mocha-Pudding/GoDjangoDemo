@@ -18,8 +18,8 @@ class Article(models.Model):
     def __str__(self):
         return self.headline
 
-class Commnt(models.Model):
+class Comment(models.Model):
     name = models.CharField(null=True, blank=True, max_length=50)
-    commnt = models.TextField()
+    comment = models.TextField()
     def __str__(self):
-        return self.commnt
+        return self.comment
