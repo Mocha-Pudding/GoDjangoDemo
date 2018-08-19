@@ -52,13 +52,18 @@ def detail(request, page_num):
         if form.is_valid():
             name = form.cleaned_data['name']
             comment = form.cleaned_data['comment']
-            c = Comment(name=name, commnt=comment)
+            a = Article.objects.get(id=page_num)
+            c = Comment(name=name, comment=comment, belong_to=a)
             c.save()
-            return redirect(to='detail')
+            return redirect(to='detail', page_num=page_num)
     context = {}
-    comment_list = Comment.objects.all()
+    # comment_list = Comment.objects.all()
+    a = Article.objects.get(id=page_num)
+    best_comment = Comment.objects.filter(best_comment=True, belong_to=a)
+    if best_comment:
+        context['best_comment'] = best_comment[0]
     article = Article.objects.get(id=page_num)
     context['article'] = article
-    context['comment_list'] = comment_list
+    # context['comment_list'] = comment_list
     context['form'] = form
     return render(request, 'detail.html', context)

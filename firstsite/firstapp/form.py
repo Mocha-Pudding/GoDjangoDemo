@@ -6,7 +6,7 @@ def words_validator(comment):
         raise ValidationError('Not enough words')
 
 def comment_validator(comment):
-    if 'a' in comment:
+    if 'fuck' in comment:
         raise ValidationError('Do not use that word!')
 
 class CommentForm(forms.Form):
