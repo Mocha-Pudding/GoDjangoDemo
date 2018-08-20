@@ -44,19 +44,22 @@ def index(request):
     index_page = render(request, 'first_web_2.html', context)
     return index_page
 
-def detail(request, page_num):
-    if request.method == 'GET':
-        form = CommentForm
-    if request.method == 'POST':
-        form= CommentForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            comment = form.cleaned_data['comment']
-            a = Article.objects.get(id=page_num)
-            c = Comment(name=name, comment=comment, belong_to=a)
-            c.save()
-            return redirect(to='detail', page_num=page_num)
+# def detail_old(request, page_num):
+#     if request.method == 'GET':
+#
+#     if request.method == 'POST':
+#         form= CommentForm(request.POST)
+#         if form.is_valid():
+#             name = form.cleaned_data['name']
+#             comment = form.cleaned_data['comment']
+#             a = Article.objects.get(id=page_num)
+#             c = Comment(name=name, comment=comment, belong_to=a)
+#             c.save()
+#             return redirect(to='detail', page_num=page_num)
+
+def detail(request, page_num, error_form=None):
     context = {}
+    form = CommentForm
     # comment_list = Comment.objects.all()
     a = Article.objects.get(id=page_num)
     best_comment = Comment.objects.filter(best_comment=True, belong_to=a)
@@ -65,5 +68,20 @@ def detail(request, page_num):
     article = Article.objects.get(id=page_num)
     context['article'] = article
     # context['comment_list'] = comment_list
-    context['form'] = form
+    if error_form is not None:
+        context['form'] = error_form
+    else:
+        context['form'] = form
     return render(request, 'detail.html', context)
+
+def detail_comment(request, page_num):
+    form= CommentForm(request.POST)
+    if form.is_valid():
+        name = form.cleaned_data['name']
+        comment = form.cleaned_data['comment']
+        a = Article.objects.get(id=page_num)
+        c = Comment(name=name, comment=comment, belong_to=a)
+        c.save()
+    else:
+        return detail(request, page_num, error_form=form)
+    return redirect(to='detail', page_num=page_num)

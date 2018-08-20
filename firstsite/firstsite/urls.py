@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 # from django.urls import path
 from django.conf.urls import url
-from firstapp.views import first_try, index, detail
+from firstapp.views import first_try, index, detail, detail_comment
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^first_try/', first_try),
     url(r'^index', index, name='index'),
     url(r'^detail/(?P<page_num>\d+)$', detail, name='detail'),
+    url(r'^detail/(?P<page_num>\d+)/comments$', detail_comment, name='comment'),
 ]
