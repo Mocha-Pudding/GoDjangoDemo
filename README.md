@@ -1,5 +1,6 @@
 # GoDjangoDemo
 #本项目使用Python Django框架来开发网页 实现一些小功能的demo        
+</br>
 功能点如下↓：</br>
 1.理解Django的MTV模式(MVC)</br>
 2.与服务器对话：理解HTTP协议</br>
