@@ -28,7 +28,7 @@ Django自带的后台管理界面↑</br>
 </br>
 
 ![ScreenShot of ArticleList](https://github.com/Mocha-Pudding/GoDjangoDemo/blob/master/article%20list.png) </br>
-首页文章列表article list截图↑</br>
+首页文章列表article list截图，带标签label和阅读量计数↑</br>
 </br>
 
 ![ScreenShot of DetailPage](https://github.com/Mocha-Pudding/GoDjangoDemo/blob/master/detail%20page.png) </br>
