@@ -12,7 +12,7 @@
 </br>
 项目部分截图如下↓：</br>
 ![ScreenShot of DjangoAdmin](https://github.com/Mocha-Pudding/GoDjangoDemo/blob/master/Django%20Admin.png) </br>
-使用Django自带的管理后台↑</br>
+使用Django自带的管理后台 admin登录后台界面↑</br>
 </br>
 
 ![ScreenShot of DjangoAdministration](https://github.com/Mocha-Pudding/GoDjangoDemo/blob/master/Django%20administration.png) </br>
