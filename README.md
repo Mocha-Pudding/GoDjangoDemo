@@ -38,3 +38,8 @@ Django自带的后台管理界面↑</br>
 ![ScreenShot of CommentSection](https://github.com/Mocha-Pudding/GoDjangoDemo/blob/master/comment%20section.png) </br>
 文章详情尾部，评论部分Comment Section，其中包括标注星标的后台选出的Best Comment最佳评论截图↑</br>
 </br>
+
+
+
+
+
